@@ -12,21 +12,30 @@ public class AplikasiKasirSederhana {
 
     public static void main(String[] args) {
         Kasir kasir1 = new Kasir("A001", "Arifatul Birroh");
-        kasir1.tampilkanInfo();
-
         Barang barang1 = new Barang("B001", "Indomie", 3500, 2);
+
+        kasir1.tampilkanInfo();
         barang1.tampilkanBarang();
 
-        System.out.println("Total Harga: Rp" + barang1.hitungTotal());
+        barang1.setHarga(4000);
+        barang1.setJumlah(3);
+
+        System.out.println("\nSetelah data diubah:");
+        System.out.println("Harga: Rp" + barang1.getHarga());
+        System.out.println("Jumlah: " + barang1.getJumlah());
+
+        barang1.setHarga(-100);
+        barang1.setJumlah(0);
+
+        System.out.println("\nTotal harga: Rp" + barang1.hitungTotal());
     }
 }
 
 class Kasir {
-
     private String idKasir;
     private String namaKasir;
 
-    Kasir(String idKasir, String namaKasir) {
+    public Kasir(String idKasir, String namaKasir) {
         this.idKasir = idKasir;
         this.namaKasir = namaKasir;
     }
@@ -35,80 +44,85 @@ class Kasir {
         return idKasir;
     }
 
-    public String getNamaKasir() {
-        return namaKasir;
-    }
-
     public void setIdKasir(String idKasir) {
         this.idKasir = idKasir;
+    }
+
+    public String getNamaKasir() {
+        return namaKasir;
     }
 
     public void setNamaKasir(String namaKasir) {
         this.namaKasir = namaKasir;
     }
 
-    void tampilkanInfo() {
-        System.out.println("=== DATA KASIR ===");
-        System.out.println("ID Kasir   : " + idKasir);
-        System.out.println("Nama Kasir : " + namaKasir);
+    public void tampilkanInfo() {
+        System.out.println("ID Kasir: " + getIdKasir());
+        System.out.println("Nama Kasir: " + getNamaKasir());
     }
 }
 
 class Barang {
-
     private String kodeBarang;
     private String namaBarang;
     private double harga;
     private int jumlah;
 
-    Barang(String kodeBarang, String namaBarang, double harga, int jumlah) {
+    public Barang(String kodeBarang, String namaBarang, double harga, int jumlah) {
         this.kodeBarang = kodeBarang;
         this.namaBarang = namaBarang;
-        this.harga = harga;
-        this.jumlah = jumlah;
+        setHarga(harga);
+        setJumlah(jumlah);
     }
 
     public String getKodeBarang() {
         return kodeBarang;
     }
 
-    public String getNamaBarang() {
-        return namaBarang;
-    }
-
-    public double getHarga() {
-        return harga;
-    }
-
-    public int getJumlah() {
-        return jumlah;
-    }
-
     public void setKodeBarang(String kodeBarang) {
         this.kodeBarang = kodeBarang;
+    }
+
+    public String getNamaBarang() {
+        return namaBarang;
     }
 
     public void setNamaBarang(String namaBarang) {
         this.namaBarang = namaBarang;
     }
 
+    public double getHarga() {
+        return harga;
+    }
+
     public void setHarga(double harga) {
-        this.harga = harga;
+        if (harga >= 0) {
+            this.harga = harga;
+        } else {
+            System.out.println("Harga tidak boleh negatif.");
+        }
+    }
+
+    public int getJumlah() {
+        return jumlah;
     }
 
     public void setJumlah(int jumlah) {
-        this.jumlah = jumlah;
+        if (jumlah > 0) {
+            this.jumlah = jumlah;
+        } else {
+            System.out.println("Jumlah harus lebih dari 0.");
+        }
     }
 
-    double hitungTotal() {
-        return harga * jumlah;
+    public double hitungTotal() {
+        return getHarga() * getJumlah();
     }
 
-    void tampilkanBarang() {
-        System.out.println("\n=== DATA BARANG ===");
-        System.out.println("Kode Barang : " + kodeBarang);
-        System.out.println("Nama Barang : " + namaBarang);
-        System.out.println("Harga       : Rp" + harga);
-        System.out.println("Jumlah      : " + jumlah);
+    public void tampilkanBarang() {
+        System.out.println("Kode Barang: " + getKodeBarang());
+        System.out.println("Nama Barang: " + getNamaBarang());
+        System.out.println("Harga: Rp" + getHarga());
+        System.out.println("Jumlah: " + getJumlah());
     }
 }
