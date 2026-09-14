@@ -13,19 +13,37 @@ public class AplikasiKasirSederhana {
     public static void main(String[] args) {
         Kasir kasir1 = new Kasir("A001", "Arifatul Birroh");
         kasir1.tampilkanInfo();
+
         Barang barang1 = new Barang("B001", "Indomie", 3500, 2);
         barang1.tampilkanBarang();
+
         System.out.println("Total Harga: Rp" + barang1.hitungTotal());
     }
 }
 
 class Kasir {
-    
-    String idKasir;
-    String namaKasir;
+
+    private String idKasir;
+    private String namaKasir;
 
     Kasir(String idKasir, String namaKasir) {
         this.idKasir = idKasir;
+        this.namaKasir = namaKasir;
+    }
+
+    public String getIdKasir() {
+        return idKasir;
+    }
+
+    public String getNamaKasir() {
+        return namaKasir;
+    }
+
+    public void setIdKasir(String idKasir) {
+        this.idKasir = idKasir;
+    }
+
+    public void setNamaKasir(String namaKasir) {
         this.namaKasir = namaKasir;
     }
 
@@ -37,15 +55,48 @@ class Kasir {
 }
 
 class Barang {
-    String kodeBarang;
-    String namaBarang;
-    double harga;
-    int jumlah;
+
+    private String kodeBarang;
+    private String namaBarang;
+    private double harga;
+    private int jumlah;
 
     Barang(String kodeBarang, String namaBarang, double harga, int jumlah) {
         this.kodeBarang = kodeBarang;
         this.namaBarang = namaBarang;
         this.harga = harga;
+        this.jumlah = jumlah;
+    }
+
+    public String getKodeBarang() {
+        return kodeBarang;
+    }
+
+    public String getNamaBarang() {
+        return namaBarang;
+    }
+
+    public double getHarga() {
+        return harga;
+    }
+
+    public int getJumlah() {
+        return jumlah;
+    }
+
+    public void setKodeBarang(String kodeBarang) {
+        this.kodeBarang = kodeBarang;
+    }
+
+    public void setNamaBarang(String namaBarang) {
+        this.namaBarang = namaBarang;
+    }
+
+    public void setHarga(double harga) {
+        this.harga = harga;
+    }
+
+    public void setJumlah(int jumlah) {
         this.jumlah = jumlah;
     }
 
@@ -61,4 +112,3 @@ class Barang {
         System.out.println("Jumlah      : " + jumlah);
     }
 }
-       
