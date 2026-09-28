@@ -126,3 +126,29 @@ class Barang {
         System.out.println("Jumlah: " + getJumlah());
     }
 }
+
+class BarangMakanan extends Barang {
+
+    private String jenisMakanan;
+
+    public BarangMakanan(String kodeBarang, String namaBarang,
+                         double harga, int jumlah,
+                         String jenisMakanan) {
+
+        super(kodeBarang, namaBarang, harga, jumlah);
+        this.jenisMakanan = jenisMakanan;
+    }
+
+    public String getJenisMakanan() {
+        return jenisMakanan;
+    }
+
+    public void setJenisMakanan(String jenisMakanan) {
+        this.jenisMakanan = jenisMakanan;
+    }
+
+    public void tampilkanMakanan() {
+        tampilkanBarang();
+        System.out.println("Jenis Makanan : " + jenisMakanan);
+    }
+}
