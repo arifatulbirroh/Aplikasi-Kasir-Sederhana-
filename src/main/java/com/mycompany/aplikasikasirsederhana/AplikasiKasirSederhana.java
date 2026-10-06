@@ -11,11 +11,24 @@ package com.mycompany.aplikasikasirsederhana;
 public class AplikasiKasirSederhana {
 
     public static void main(String[] args) {
+
         Kasir kasir1 = new Kasir("A001", "Arifatul Birroh");
+        
         Barang barang1 = new Barang("B001", "Indomie", 3500, 2);
+        Barang barang2 = new BarangMakanan(
+                "B002",
+                "Nasi Goreng",
+                15000,
+                1,
+                "Makanan Berat"
+        );
 
         kasir1.tampilkanInfo();
+        System.out.println("\n=== DATA BARANG ===");
         barang1.tampilkanBarang();
+
+        System.out.println("\n=== POLYMORPHISM ===");
+        barang2.tampilkanBarang();
 
         barang1.setHarga(4000);
         barang1.setJumlah(3);
@@ -32,6 +45,7 @@ public class AplikasiKasirSederhana {
 }
 
 class Kasir {
+
     private String idKasir;
     private String namaKasir;
 
@@ -57,20 +71,29 @@ class Kasir {
     }
 
     public void tampilkanInfo() {
-        System.out.println("ID Kasir: " + getIdKasir());
-        System.out.println("Nama Kasir: " + getNamaKasir());
+        System.out.println("=== DATA KASIR ===");
+        System.out.println("ID Kasir   : " + getIdKasir());
+        System.out.println("Nama Kasir : " + getNamaKasir());
     }
 }
 
+
+// ===============================
+// CLASS BARANG
+// ===============================
 class Barang {
+
     private String kodeBarang;
     private String namaBarang;
     private double harga;
     private int jumlah;
 
-    public Barang(String kodeBarang, String namaBarang, double harga, int jumlah) {
+    public Barang(String kodeBarang, String namaBarang,
+                  double harga, int jumlah) {
+
         this.kodeBarang = kodeBarang;
         this.namaBarang = namaBarang;
+
         setHarga(harga);
         setJumlah(jumlah);
     }
@@ -96,6 +119,7 @@ class Barang {
     }
 
     public void setHarga(double harga) {
+
         if (harga >= 0) {
             this.harga = harga;
         } else {
@@ -108,6 +132,7 @@ class Barang {
     }
 
     public void setJumlah(int jumlah) {
+
         if (jumlah > 0) {
             this.jumlah = jumlah;
         } else {
@@ -120,10 +145,10 @@ class Barang {
     }
 
     public void tampilkanBarang() {
-        System.out.println("Kode Barang: " + getKodeBarang());
-        System.out.println("Nama Barang: " + getNamaBarang());
-        System.out.println("Harga: Rp" + getHarga());
-        System.out.println("Jumlah: " + getJumlah());
+        System.out.println("Kode Barang : " + getKodeBarang());
+        System.out.println("Nama Barang : " + getNamaBarang());
+        System.out.println("Harga       : Rp" + getHarga());
+        System.out.println("Jumlah      : " + getJumlah());
     }
 }
 
@@ -131,8 +156,10 @@ class BarangMakanan extends Barang {
 
     private String jenisMakanan;
 
-    public BarangMakanan(String kodeBarang, String namaBarang,
-                         double harga, int jumlah,
+    public BarangMakanan(String kodeBarang,
+                         String namaBarang,
+                         double harga,
+                         int jumlah,
                          String jenisMakanan) {
 
         super(kodeBarang, namaBarang, harga, jumlah);
@@ -146,9 +173,14 @@ class BarangMakanan extends Barang {
     public void setJenisMakanan(String jenisMakanan) {
         this.jenisMakanan = jenisMakanan;
     }
+    
+    @Override
+    public void tampilkanBarang() {
 
-    public void tampilkanMakanan() {
-        tampilkanBarang();
-        System.out.println("Jenis Makanan : " + jenisMakanan);
+        System.out.println("Kode Barang   : " + getKodeBarang());
+        System.out.println("Nama Barang   : " + getNamaBarang());
+        System.out.println("Harga         : Rp" + getHarga());
+        System.out.println("Jumlah        : " + getJumlah());
+        System.out.println("Jenis Makanan : " + getJenisMakanan());
     }
 }
